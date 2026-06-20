@@ -717,7 +717,6 @@ async def asr(
     video_file: Union[str, None] = Query(default=None),
     initial_prompt: Union[str, None] = Query(default=None),
     audio_file: UploadFile = File(...),
-    encode: bool = Query(default=True, description="Encode audio first through ffmpeg"),
     output: Union[str, None] = Query(default="srt", enum=["txt", "vtt", "srt", "tsv", "json"]),
     word_timestamps: bool = Query(default=False, description="Word-level timestamps"),
 ):
@@ -779,7 +778,7 @@ async def asr(
             'video_file': video_file,
             'initial_prompt': initial_prompt,
             'audio_content': file_content,
-            'encode': encode,
+            'encode': True,
             'output': output,
             'word_timestamps': word_timestamps,
             'result_container': task_result,
